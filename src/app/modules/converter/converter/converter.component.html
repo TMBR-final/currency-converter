@@ -1,1 +1,26 @@
-<p>converter works!</p>
+<!-- <div id="overlay" *ngIf="spinner&&spinner|async">
+    <span id="nav" *ngIf="saveInProgress">
+        <div class="spinner" style="display: block; position: fixed">
+        </div>
+    </span>
+    <mat-spinner></mat-spinner>
+</div> -->
+<div class="converter-container">
+<div class="convert-form">
+    <mat-form-field class="example-form-field converter-field" appearance="fill">
+        <mat-label>sum</mat-label>
+        <input MatFormFieldControl matInput type="number" [(ngModel)]="convert.sum" (blur)="tryConvert()">
+        <button *ngIf="convert.sum" matSuffix mat-icon-button aria-label="Clear" (click)="clearSum()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    <app-currency-select id="from" class="converter-field" lable="from"(currencySelected)="currencyFromChange($event)" ></app-currency-select>
+    
+    <app-currency-select id="to" lable="to"  class="converter-field" (currencySelected)="currencyToChange($event)"></app-currency-select>
+
+</div>
+<div *ngIf="convert.res">
+    <h2>{{convert.sum|currency:convert.from}} {{convert.from}}= {{convert.res|currency:convert.to}} {{convert.to}}</h2>
+</div>
+
+</div>
