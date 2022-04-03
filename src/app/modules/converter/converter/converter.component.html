@@ -19,9 +19,7 @@
     <app-currency-select id="to" lable="to"  class="converter-field" (currencySelected)="currencyToChange($event)"></app-currency-select>
 
 </div>
-<div class="resualt">
-    <h2>{{1|currency:"eur"}} eur= {{3|currency:"usd"}} usd</h2>
-</div>
+
 <div class="resualt" *ngIf="convert.res">
     <h2>{{convert.sum|currency:convert.from}} {{convert.from}}= {{convert.res|currency:convert.to}} {{convert.to}}</h2>
 </div>
