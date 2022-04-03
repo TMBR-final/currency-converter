@@ -26,7 +26,7 @@ export class CurrencySelectComponent implements OnInit {
  })
     this._convertService.getCurrencies().subscribe(currencies=>{
       this.currenciesList=currencies;
-    })
+    },err=>this._convertService.stop())
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value)),

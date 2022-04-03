@@ -9,7 +9,7 @@ import { Convert } from '../models/Convert';
   providedIn: 'root'
 })
 export class ConvertService {
-spinner:BehaviorSubject<boolean>=new BehaviorSubject(false);
+spinner:BehaviorSubject<boolean>=new BehaviorSubject(true);
   constructor(private _http: HttpClient) { }
 private _rates: BehaviorSubject<any>=new BehaviorSubject(null);
 public get ratesData(): Observable<any>
@@ -23,7 +23,7 @@ public get ratesData(): Observable<any>
 }
 spin()
 {
-  this.spinner.next(false);
+  this.spinner.next(true);
 }
 stop()
 {
@@ -33,8 +33,13 @@ stop()
   getRates(): Observable<any>
   {
 this.spin()
+
     return this._http.get<any>("http://api.exchangeratesapi.io/v1/latest?access_key=050beeaad0ad5cda72460c6758d5a11e&format=1")
-  .pipe( tap(data =>  this._rates.next(data)));
+  .pipe( tap(data => { this._rates.next(data);
+  this.stop();
+
+  }));
+
   }
   getCurrencies(): Observable<string[]>
   {

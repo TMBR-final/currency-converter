@@ -1,5 +1,5 @@
 import { ThrowStmt } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConvertService } from 'src/app/services/convert.service';
 import {Convert} from '../../../models/Convert';
@@ -9,13 +9,17 @@ import {HistoryService} from '../../../services/history.service'
   templateUrl: './converter.component.html',
   styleUrls: ['./converter.component.scss']
 })
-export class ConverterComponent implements OnInit {
+export class ConverterComponent implements OnInit, AfterViewInit {
 convert: Convert = new Convert();
-spinner:Observable<boolean>;
+spinner=true;
 
   constructor(private _convertService: ConvertService,private _historyService:HistoryService) { }
+  ngAfterViewInit(): void {
+    
+  }
   ngOnInit(): void {
-    this.spinner=this._convertService.spinner;
+    this._convertService.spinner.subscribe(d=>this.spinner=d);
+ 
   }
   clearSum()
   {
@@ -32,7 +36,7 @@ spinner:Observable<boolean>;
     this.tryConvert();
   }
   tryConvert() {
-    this.convert.res = null;
+   
     if (this.convert.sum && this.convert.from && this.convert.to) {
    this._convertService.convert(this.convert).subscribe(res =>
     {
@@ -40,7 +44,7 @@ spinner:Observable<boolean>;
       this.convert.date = new Date();
       this._historyService.addHistory({...this.convert})
 
-    }
+    },err=>this._convertService.stop()
 
     );
    }

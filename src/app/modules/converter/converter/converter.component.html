@@ -1,10 +1,10 @@
-<!-- <div id="overlay" *ngIf="spinner&&spinner|async">
-    <span id="nav" *ngIf="saveInProgress">
+<div id="overlay" *ngIf="spinner">
+    <span id="nav">
         <div class="spinner" style="display: block; position: fixed">
         </div>
     </span>
     <mat-spinner></mat-spinner>
-</div> -->
+</div>
 <div class="converter-container">
 <div class="convert-form">
     <mat-form-field class="example-form-field converter-field" appearance="fill">
@@ -19,7 +19,10 @@
     <app-currency-select id="to" lable="to"  class="converter-field" (currencySelected)="currencyToChange($event)"></app-currency-select>
 
 </div>
-<div *ngIf="convert.res">
+<div class="resualt">
+    <h2>{{1|currency:"eur"}} eur= {{3|currency:"usd"}} usd</h2>
+</div>
+<div class="resualt" *ngIf="convert.res">
     <h2>{{convert.sum|currency:convert.from}} {{convert.from}}= {{convert.res|currency:convert.to}} {{convert.to}}</h2>
 </div>
 
