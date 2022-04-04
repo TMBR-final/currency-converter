@@ -5,6 +5,7 @@ const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'converter' },
   {path: 'converter', loadChildren: () => import('./modules/converter/converter.module').then(c => c.ConverterModule)},
   {path: 'about', loadChildren: () => import('./modules/about/about.module').then(a => a.AboutModule)},
+  {path: '**', redirectTo: 'converter' },
 ];
 
 @NgModule({

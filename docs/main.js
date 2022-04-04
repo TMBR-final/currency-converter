@@ -43,6 +43,7 @@ const routes = [
     { path: '', pathMatch: 'full', redirectTo: 'converter' },
     { path: 'converter', loadChildren: () => Promise.all(/*! import() | modules-converter-converter-module */[__webpack_require__.e("default~modules-about-about-module~modules-converter-converter-module"), __webpack_require__.e("modules-converter-converter-module")]).then(__webpack_require__.bind(null, /*! ./modules/converter/converter.module */ "./src/app/modules/converter/converter.module.ts")).then(c => c.ConverterModule) },
     { path: 'about', loadChildren: () => Promise.all(/*! import() | modules-about-about-module */[__webpack_require__.e("default~modules-about-about-module~modules-converter-converter-module"), __webpack_require__.e("modules-about-about-module")]).then(__webpack_require__.bind(null, /*! ./modules/about/about.module */ "./src/app/modules/about/about.module.ts")).then(a => a.AboutModule) },
+    { path: '**', redirectTo: 'converter' },
 ];
 class AppRoutingModule {
 }
