@@ -1,7 +1,7 @@
 # CurrencyConverter
 
 To run the Application please click this link:
-
+https://br-fullstack.github.io/currency-converter/converter
 #Comment 
 No the curencies and rates http get request faild-
 The Api  return "error":{
